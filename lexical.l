@@ -26,7 +26,6 @@ void yyerror (char *s);
 "return"        return RETURN;
 "const"         return CONSTANT;
 "int"           return INT;
-"bool"          return BOOLEAN;
 "char"          return CHAR;
 "float"         return FLOAT;
 "void"          return VOID;
@@ -56,7 +55,7 @@ void yyerror (char *s);
 
 '[a-zA-Z]'              {
 							
-							yylval.val = yytext;
+							yylval.val = *yytext;
 
 							return CHAR;
 							}

@@ -2131,7 +2131,7 @@ yyreturn:
 
 
 void yyerror(char *s) {
-    fprintf("%s\n", s);
+    printf("%s\n", s);
 }
 
 int main(void) {
