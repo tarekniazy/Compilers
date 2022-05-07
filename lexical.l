@@ -1,9 +1,9 @@
 %{
 #include<stdio.h>
-#include<string>
-#include<stdarg>
-#include<stdlib>
+
 #include"y.tab.h"
+void yyerror (char *s);
+
 %}
 
 
@@ -11,12 +11,7 @@
 %%
 
 
-"("             return OPENBRACKET;
-")"             return CLOSEDBRACKET;
-"*"             return MULTIPLY;
-"/"             return DIVIDE;
-"+"             return PLUS;
-"-"             return MINUS;
+
 "while"         return WHILE;
 "if"            return IF;
 "else"          return ELSE;
@@ -32,10 +27,8 @@
 "const"         return CONSTANT;
 "int"           return INT;
 "bool"          return BOOLEAN;
-"char"          return CHARACTER;
+"char"          return CHAR;
 "float"         return FLOAT;
-"double"        return DOUBLE;
-"string"        return STRING;
 "void"          return VOID;
 ">="            return GE;
 "<="            return LE;
@@ -48,28 +41,47 @@
 "!"             return NOT;
 
 
-:  {printf("COLON");}
+[1-9][0-9]*				{ 
+	                		yylval.val = atoi(yytext);
 
-;  {printf("SEMICOLON");}
+							return DIGIT;
+							}
 
-[a-zA-Z][_a-zA-Z0-9]*	{return IDENTIFIER;}//{printf("IDENTIFIER");}
-[1-9][0-9]*				{yylval=atoi(yytext) return DIGIT;}//{printf("INTEGER");}
+[1-9][0-9]*\.[0-9]+   {	    
+							yylval.val = atof(yytext);
 
-[1-9][0-9]*\.[0-9]+   {yylval=atof(yytext) return FLOAT;}//{printf("FLOAT");}
-'[a-zA-Z]'              {yylval=yytext return CHAR;}//{printf("Char");}
+							return FLOAT;
+							}
 
 
+'[a-zA-Z]'              {
+							
+							yylval.val = yytext;
 
-[ \t\n]					;
+							return CHAR;
+							}
+
+[-()<>=*/;{}+.:,] {
+                    return *yytext;
+                }
+
+
+[ \t\n]*					;
+
+[a-zA-Z][_a-zA-Z0-9]*	{   yylval.ind = *yytext-'a';
+							return IDENTIFIER;
+							}
+
+
 .					printf("unexpected character\n");
 
 
 %%
-int main(void)
-{
-    yylex();
-    return 0;
-}
+// int main(void)
+// {
+//     yylex();
+//     return 0;
+// }
 int yywrap(void)
 {
 	return 1;
