@@ -50,7 +50,7 @@ void yyerror (char *s);
 [1-9][0-9]*\.[0-9]+   {	    
 							yylval.val = atof(yytext);
 
-							return FLOAT;
+							return DECIMAL;
 							}
 
 

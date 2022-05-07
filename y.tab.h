@@ -41,81 +41,77 @@
    enum yytokentype {
      DIGIT = 258,
      IDENTIFIER = 259,
-     FLOAT = 260,
-     CHAR = 261,
-     PLUS = 262,
-     MINUS = 263,
-     MULTIPLY = 264,
-     DIVIDE = 265,
-     OPENBRACKET = 266,
-     CLOSEDBRACKET = 267,
-     WHILE = 268,
-     IF = 269,
-     RETURN = 270,
-     FOR = 271,
-     REPEAT = 272,
-     UNTIL = 273,
-     SWITCH = 274,
-     CASE = 275,
-     BREAK = 276,
-     DEFAULT = 277,
-     CONTINUE = 278,
-     INC = 279,
-     DEC = 280,
-     INT = 281,
-     BOOLEAN = 282,
-     CONSTANT = 283,
-     VOID = 284,
-     IFX = 285,
-     ELSE = 286,
-     NOT = 287,
-     OR = 288,
-     AND = 289,
-     NE = 290,
-     EQ = 291,
-     LE = 292,
-     GE = 293,
-     UMINUS = 294
+     INT = 260,
+     CONSTANT = 261,
+     CHAR = 262,
+     FLOAT = 263,
+     VOID = 264,
+     WHILE = 265,
+     IF = 266,
+     RETURN = 267,
+     FOR = 268,
+     REPEAT = 269,
+     UNTIL = 270,
+     SWITCH = 271,
+     CASE = 272,
+     BREAK = 273,
+     DEFAULT = 274,
+     CONTINUE = 275,
+     INC = 276,
+     DEC = 277,
+     DECIMAL = 278,
+     IFX = 279,
+     ELSE = 280,
+     MINUS = 281,
+     PLUS = 282,
+     DIVIDE = 283,
+     MULTIPLY = 284,
+     NOT = 285,
+     OR = 286,
+     AND = 287,
+     NE = 288,
+     EQ = 289,
+     LE = 290,
+     GE = 291,
+     UMINUS = 292
    };
 #endif
 /* Tokens.  */
 #define DIGIT 258
 #define IDENTIFIER 259
-#define FLOAT 260
-#define CHAR 261
-#define PLUS 262
-#define MINUS 263
-#define MULTIPLY 264
-#define DIVIDE 265
-#define OPENBRACKET 266
-#define CLOSEDBRACKET 267
-#define WHILE 268
-#define IF 269
-#define RETURN 270
-#define FOR 271
-#define REPEAT 272
-#define UNTIL 273
-#define SWITCH 274
-#define CASE 275
-#define BREAK 276
-#define DEFAULT 277
-#define CONTINUE 278
-#define INC 279
-#define DEC 280
-#define INT 281
-#define BOOLEAN 282
-#define CONSTANT 283
-#define VOID 284
-#define IFX 285
-#define ELSE 286
-#define NOT 287
-#define OR 288
-#define AND 289
-#define NE 290
-#define EQ 291
-#define LE 292
-#define GE 293
-#define UMINUS 294
+#define INT 260
+#define CONSTANT 261
+#define CHAR 262
+#define FLOAT 263
+#define VOID 264
+#define WHILE 265
+#define IF 266
+#define RETURN 267
+#define FOR 268
+#define REPEAT 269
+#define UNTIL 270
+#define SWITCH 271
+#define CASE 272
+#define BREAK 273
+#define DEFAULT 274
+#define CONTINUE 275
+#define INC 276
+#define DEC 277
+#define DECIMAL 278
+#define IFX 279
+#define ELSE 280
+#define MINUS 281
+#define PLUS 282
+#define DIVIDE 283
+#define MULTIPLY 284
+#define NOT 285
+#define OR 286
+#define AND 287
+#define NE 288
+#define EQ 289
+#define LE 290
+#define GE 291
+#define UMINUS 292
 
 
 
@@ -125,7 +121,7 @@ typedef union YYSTYPE
 {
 
 /* Line 1676 of yacc.c  */
-#line 10 "parser.y"
+#line 12 "parser.y"
 
     int val;   
     char ind;      
@@ -134,7 +130,7 @@ typedef union YYSTYPE
 
 
 /* Line 1676 of yacc.c  */
-#line 138 "y.tab.h"
+#line 134 "y.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

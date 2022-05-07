@@ -1,8 +1,10 @@
 %{
-#include<stdio.h>
-
-void yyerror(char *);
-int yylex(void);
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <stdarg.h>
+    
+    void yyerror(char *);
+    int yylex(void);
 
 int symbols[52];
 %}
@@ -13,18 +15,17 @@ int symbols[52];
              
 };
 
-%token <val>DIGIT <ind>IDENTIFIER FLOAT CHAR PLUS MINUS MULTIPLY DIVIDE OPENBRACKET CLOSEDBRACKET 
+%token <val>DIGIT <ind>IDENTIFIER INT CONSTANT CHAR FLOAT VOID 
 
-%token WHILE IF RETURN FOR REPEAT UNTIL SWITCH CASE BREAK DEFAULT CONTINUE INC DEC 
+%token WHILE IF RETURN FOR REPEAT UNTIL SWITCH CASE BREAK DEFAULT CONTINUE INC DEC DECIMAL
 
-%token INT BOOLEAN CONSTANT VOID
+%nonassoc IFX
+%nonassoc ELSE
 
 %left PLUS MINUS
 
 %left MULTIPLY DIVIDE
 
-%nonassoc IFX
-%nonassoc ELSE
 
 %left GE LE EQ NE '>' '<' AND OR NOT
 %left '+' '-'
@@ -48,9 +49,10 @@ stmt:
         ';'             { printf("semi \n");}
         | expr ';'      { printf("expr semi \n");}
         | declare       { printf("declare \n");}
-         | const         { printf("const \n");}
+        | const         { printf("const \n");}
         | if            { printf("if \n");}
         | while         { printf("while \n");}
+        | for           { printf("for \n");}
         | BREAK ';'     { printf("BREAK \n");}        
         | CONTINUE ';'  { printf("CONTINUE \n");}
         | repeatuntil   { printf("repeatuntil \n");}
@@ -68,7 +70,6 @@ stmt_list:
 
 identifier:
         INT                     { printf("This is int \n");}
-        | BOOLEAN               { printf("This is bool \n");}
         | CHAR             { printf("This is char \n");}
         | FLOAT                 { printf("This is float \n");}
         | VOID                  { printf("This is void \n");}
@@ -85,9 +86,9 @@ const:
 
 expr:
           DIGIT                        { printf("digit "); }
-        | FLOAT                             { printf("FLOATDIGIT "); }
+        | DECIMAL                             { printf("DECIMAL "); }
         | CHAR                              { printf("CHARACTER "); }
-        | IDENTIFIER                                    { printf("var "); }
+        | IDENTIFIER                                    { printf("IDENTIFIER "); }
         | '-' expr %prec UMINUS 
         | expr   '+'   expr         { printf("expr + expr \n"); }
         | expr   '-'   expr         { printf("expr - expr \n"); }
@@ -126,6 +127,7 @@ while:
 incrementation:
         IDENTIFIER INC             { printf("var++ \n"); }
         | IDENTIFIER DEC                  { printf("var-- \n"); }
+
         ;
 
 preincrementation:
@@ -135,7 +137,7 @@ preincrementation:
             ;
 
 forincrementation:
-              incrementation
+              incrementation   
               |preincrementation
               ;
 
@@ -187,7 +189,7 @@ function:
 %%
 
 void yyerror(char *s) {
-    fprintf(stderr, "%s\n", s);
+    fprintf("%s\n", s);
 }
 
 int main(void) {
